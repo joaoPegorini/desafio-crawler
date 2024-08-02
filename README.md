@@ -1,50 +1,31 @@
-# beeMôn:
+# IMDb Top 250 Crawler
 
-Na beeMôn criamos muitos sistemas de raspagem de dados e buscamos todos os dias inovação na analise dos dados. Este desafio esta aberto para todos que quiserem abrir um fork e submeter suas ideias de tecnologia.
+Este projeto é um crawler para extrair informações dos filmes top 250 do IMDb. Utiliza a biblioteca `selenium` para realizar o web scraping e salva os dados em formatos JSON e SQLite.
 
-## Desafio:
-Escolher uma dos sites abaixo para fazer o desafio
+## Funcionalidades
 
-- [quotes.toscrape](https://quotes.toscrape.com/)
-- [imdb.com](https://www.imdb.com/chart/top/?ref_=nv_mv_250)
+- **Web Scraping**: Extrai informações dos filmes top 250 do IMDb, incluindo título, ano, duração, colocação e classificação.
+- **Salvamento em JSON**: Armazena os dados extraídos em um arquivo JSON com timestamp.
+- **Captura de Tela**: Salva uma captura de tela da página de filmes.
+- **Banco de Dados SQLite**: Salva os dados dos filmes em um banco de dados SQLite.
+- **Agendamento de Execução**: Utiliza o `APScheduler` para agendar a execução do crawler a cada minuto, permitindo atualizações automáticas dos dados.
 
-### Minimo Entregável:
+## Requisitos
 
-- Buscar dados de forma automatizada(script de linha de comando ou interface clicavel)
-- Padronizar os retornos de forma estruturada (json/csv)
-- Sistema de logs de para acompanhamento da execução
-- Ter um prova da consulta (Screenshot)
+- Python 3.x
+- Selenium
+- Pandas
+- SQLite3
+- WebDriver para o navegador Chrome
 
-### Pontos Extra para:
+## Consulta da Tabela no SQLite
 
-- Armazenamento dos resultados em um banco relacional ou não relacional
-- Fazer um dataframe que possibilite visualizar os resultados via pandas
-- Trazer resultados de forma dinamica sem fixar caminhos no `xpath`
-- Dockerizar a aplicação
-- Conseguir agendar uma execução para um dia e horario.
+- Abra o terminal
+- Execute o comando ' **sqlite3 movies.db** ' para acessar o banco de dados
+- Execute o comando ' **SELECT * FROM movies;** ' para consultar os dados
 
-### Libs sugeridas:
+## Agendador
 
- - Selenium 
- - Scrapy
- - Pandas
- - Requests
- - BeautifulSoup 
+O agendador é configurado usando a biblioteca `APScheduler`. O método `execute` do crawler é agendado para rodar periodicamente, e o script principal mantém o agendador em execução contínua. Se necessário, o agendador pode ser interrompido manualmente, e o navegador será fechado corretamente.
 
-
-### O que iremos avaliar:
-
-- Conhecimento em HTML
-- Conhecimento em fluxo de request/response
-- Conhecimento em extração de dados
-- Conhecimento em base64
-- Boas práticas de programação
-- Utilização de bibliotecas de terceiros
-- Documentação
-- Criatividade
-- Cobertura de testes
-- Tempo de execução do código
-- Versionamento do código
-
-
-
+- Configurar intervalo de tempo do agendador no arquivo .env `em minutos`
